@@ -24,6 +24,10 @@ repositories {
 
 extra["testcontainersVersion"] = "1.16.2"
 
+val springDocVersion = "1.6.6"
+val apacheTextVersion = "1.9"
+val apacheCommonsIoVersion = "2.8.0"
+
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
@@ -35,6 +39,12 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.liquibase:liquibase-core")
     implementation("org.springframework.data:spring-data-rest-hal-explorer")
+    // Log4j2
+    implementation("io.sentry:sentry-log4j2:5.6.0")
+    // OpenAPI
+    implementation ("org.springdoc:springdoc-openapi-ui:$springDocVersion")
+    // Apache Text
+    implementation ("org.apache.commons:commons-text:$apacheTextVersion")
     runtimeOnly("com.h2database:h2")
     runtimeOnly("mysql:mysql-connector-java")
     runtimeOnly("org.postgresql:postgresql")
