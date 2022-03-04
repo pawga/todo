@@ -1,7 +1,6 @@
 package com.pawga.todo.advice
 
 import com.pawga.todo.data.models.ErrorResponse
-import com.pawga.todo.exceptions.ApplicationException
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 import org.springframework.core.Ordered
