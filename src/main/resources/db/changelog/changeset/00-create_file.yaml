@@ -1,0 +1,33 @@
+databaseChangeLog:
+  - changeSet:
+      id: createSequence
+      author: sivannikov (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createSequence:
+            sequenceName: HIBERNATE_SEQUENCE
+  - changeSet:
+      id: createTable
+      author: sivannikov (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: CONSTRAINT_2
+                  name: ID
+                  type: BIGINT
+              - column:
+                  name: DETAIL
+                  type: VARCHAR(255)
+              - column:
+                  name: DONE
+                  type: BOOLEAN
+              - column:
+                  name: TITLE
+                  type: VARCHAR(255)
+            tableName: TODO
+
