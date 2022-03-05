@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.media.Content
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
 import org.springframework.http.HttpStatus
@@ -18,8 +19,8 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder
 
 @RestController
-@RequestMapping("/api/v1/todos")
-class TodoController(private val todoService: TodoService) {
+@RequestMapping("/v1/todos")
+class TodoController(@Autowired private val todoService: TodoService) {
 
     var log: Logger = LoggerFactory.getLogger(TodoController::class.java)
 
@@ -35,7 +36,9 @@ class TodoController(private val todoService: TodoService) {
     @PostMapping("/create")
     fun create(@RequestBody todo: Todo): ResponseEntity<*>? {
         log.debug("create")
-        todoService.findById(todo.id) ?: throw ResourceDuplicateException("Todo is duplicate for this id :: ${todo.id}")
+        if (todoService.findById(todo.id) != null) {
+            throw ResourceDuplicateException("Todo is duplicate for this id :: ${todo.id}")
+        }
         val id = todoService.save(todo)
         val location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
             .buildAndExpand(id).toUri()

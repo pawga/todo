@@ -8,3 +8,5 @@ class ResourceNotFoundException(message: String?) : Exception(message)
 
 @ResponseStatus(value = HttpStatus.CONFLICT)
 class ResourceDuplicateException(message: String?) : Exception(message)
+
+class ApplicationException(message: String) : RuntimeException(message)

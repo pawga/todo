@@ -1,6 +1,5 @@
 package com.pawga.todo.data.models
 
-import com.pawga.todo.domain.entities.Todo
 import javax.persistence.*
 
 @Entity

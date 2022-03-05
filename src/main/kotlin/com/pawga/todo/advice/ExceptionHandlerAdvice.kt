@@ -1,5 +1,8 @@
 package com.pawga.todo.advice
 
+import com.pawga.todo.core.errors.ApplicationException
+import com.pawga.todo.core.errors.ResourceDuplicateException
+import com.pawga.todo.core.errors.ResourceNotFoundException
 import com.pawga.todo.data.models.ErrorResponse
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
@@ -56,13 +59,25 @@ class ExceptionHandlerAdvice {
     @ExceptionHandler(ResponseStatusException::class)
     fun handleResponseStatusException(e: ResponseStatusException): ResponseEntity<ErrorResponse> {
         log.error(e.status.toString(), e)
-        return ResponseEntity.status(e.status).body<ErrorResponse>(ErrorResponse(e.message))
+        return ResponseEntity.status(e.status).body(ErrorResponse(e.message))
     }
 
     @ExceptionHandler(AccessDeniedException::class)
     fun handleAccessDeniedException(e: AccessDeniedException?): ResponseEntity<Any> {
         log.error(HttpStatus.FORBIDDEN.toString(), e)
         return ResponseEntity.status(HttpStatus.FORBIDDEN).build()
+    }
+
+    @ExceptionHandler(ResourceDuplicateException::class)
+    fun resourceDuplicateException(e: Exception?): ResponseEntity<Any> {
+        log.error(HttpStatus.CONFLICT.toString(), e)
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(ErrorResponse(e?.message ?: ""))
+    }
+
+    @ExceptionHandler(ResourceNotFoundException::class)
+    fun resourceNotFoundException(e: Exception?): ResponseEntity<Any> {
+        log.error(HttpStatus.NOT_FOUND.toString(), e)
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ErrorResponse(e?.message ?: ""))
     }
 
     @ExceptionHandler(Exception::class)
