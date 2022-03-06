@@ -1,6 +1,6 @@
 # Clean architecture example (template)
 
-###About clean architecture:
+### About clean architecture:
 
 1. [Robert C. Martin's Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
 2. [Clean Architecture with Spring Boot](https://www.baeldung.com/spring-boot-clean-architecture)
