@@ -40,11 +40,12 @@ dependencies {
     implementation("org.liquibase:liquibase-core")
     implementation("org.springframework.data:spring-data-rest-hal-explorer")
     // Log4j2
-    implementation("io.sentry:sentry-log4j2:5.6.0")
+    implementation("io.sentry:sentry-log4j2:5.6.1")
     // OpenAPI
     implementation ("org.springdoc:springdoc-openapi-ui:$springDocVersion")
     // Apache Text
     implementation ("org.apache.commons:commons-text:$apacheTextVersion")
+    runtimeOnly("io.micrometer:micrometer-registry-prometheus")
     runtimeOnly("com.h2database:h2")
     runtimeOnly("mysql:mysql-connector-java")
     runtimeOnly("org.postgresql:postgresql")
